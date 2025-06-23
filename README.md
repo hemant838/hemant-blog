@@ -1,8 +1,27 @@
+## **Note:** You may notice that some files appear to be 3 months old. Please don’t consider this as any kind of cheating — the project was initialized on the same day it's being worked on. We’re just making use of an older setup. This is purely for clarification.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First intall dependencies
+
+```bash
+npm install
+```
+
+Then create an .env file in root of the folder and paste the below data into it 
+
+```bash
+
+DATABASE_URL=postgresql://blogger_owner:npg_6VGB0CREmZgl@ep-plain-leaf-a8d0qzyl-pooler.eastus2.azure.neon.tech/blogger?sslmode=require
+
+NEXT_PUBLIC_CLOUDINARY_KEY=322395274971586
+NEXT_PUBLIC_CLOUDINARY_SECRET=2blGibaP9XDXXX3jpOOLXVTh5Xo
+```
+
+
+run the development server:
 
 ```bash
 npm run dev
