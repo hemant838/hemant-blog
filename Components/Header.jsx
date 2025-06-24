@@ -169,74 +169,90 @@ export default function Header() {
 
       {/* Modal for creating a blog using Shadcn Dialog component */}
       <Dialog open={isModalOpen} onOpenChange={closeModal}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
+        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-hidden flex flex-col">
+          <DialogHeader className="flex-shrink-0">
             <DialogTitle>Create New Blog</DialogTitle>
           </DialogHeader>
           {error && <p className="text-red-500 mt-2">{error}</p>}
-          <form onSubmit={handleSubmit} className="space-y-4 pt-4">
-            <div className="grid gap-2">
-              <label htmlFor="title" className="text-sm font-medium">
-                Title
-              </label>
-              <Input
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <label htmlFor="description" className="text-sm font-medium">
-                Description
-              </label>
-              <Input
-                id="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <label htmlFor="category" className="text-sm font-medium">
-                Category
-              </label>
-              <Select
-                value={category}
-                onValueChange={(value) => setCategory(value)}
-                required
-              >
-                <SelectTrigger id="category" className="w-full">
-                  <SelectValue placeholder="Select a category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Technology">Technology</SelectItem>
-                  <SelectItem value="Startup">Startup</SelectItem>
-                  <SelectItem value="Lifestyle">Lifestyle</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid gap-2">
-              <label htmlFor="content" className="text-sm font-medium">
-                Content
-              </label>
-              <Textarea
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                rows={5}
-                required
-              />
-            </div>
-            <DialogFooter className="pt-4">
-              <Button type="button" variant="outline" onClick={closeModal}>
-                Cancel
-              </Button>
-              <Button type="submit" disabled={loading}>
-                {loading ? "Creating..." : "Create"}
-              </Button>
-            </DialogFooter>
-          </form>
+          <div className="flex-1 overflow-y-auto pr-2">
+            <form onSubmit={handleSubmit} className="space-y-4 pt-4">
+              <div className="grid gap-2">
+                <label htmlFor="title" className="text-sm font-medium">
+                  Title
+                </label>
+                <Input
+                  id="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="description" className="text-sm font-medium">
+                  Description
+                </label>
+                <Input
+                  id="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="category" className="text-sm font-medium">
+                  Category
+                </label>
+                <Select
+                  value={category}
+                  onValueChange={(value) => setCategory(value)}
+                  required
+                >
+                  <SelectTrigger id="category" className="w-full">
+                    <SelectValue placeholder="Select a category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Technology">Technology</SelectItem>
+                    <SelectItem value="Startup">Startup</SelectItem>
+                    <SelectItem value="Lifestyle">Lifestyle</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="content" className="text-sm font-medium">
+                  Content
+                </label>
+                <div className="relative">
+                  <Textarea
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    rows={8}
+                    className="min-h-[200px] max-h-[300px] resize-y"
+                    placeholder="Write your blog content here..."
+                    required
+                  />
+                  <div className="absolute bottom-2 right-2 text-xs text-gray-500 bg-white px-1 rounded">
+                    {content.length} chars
+                  </div>
+                </div>
+              </div>
+              <DialogFooter className="pt-4 flex-shrink-0 sticky bottom-0 bg-white border-t mt-4 -mx-6 px-6 py-4">
+                <Button type="button" variant="outline" onClick={closeModal}>
+                  Cancel
+                </Button>
+                <Button type="submit" disabled={loading}>
+                  {loading ? (
+                    <div className="flex items-center">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Creating...
+                    </div>
+                  ) : (
+                    "Create"
+                  )}
+                </Button>
+              </DialogFooter>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
     </header>
